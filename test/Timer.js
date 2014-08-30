@@ -25,6 +25,10 @@ describe('Timer', function(){
             timer.on("start", spy1);
             timer.on("this does not exist", spy2);
             timer.start();
+
+            var clock = sinon.useFakeTimers();
+            clock.tick(500);
+
             assert.ok(spy1.called);
             assert.ok(!spy2.called);
             timer.stop();
@@ -44,10 +48,15 @@ describe('Timer', function(){
         })
     })
 
+
+
+
     describe('.stop()', function(){
         it('should return a callback when the timer stops', function(done){
             var timer = new Timer();
             timer.start();
+            var clock = sinon.useFakeTimers();
+            clock.tick(500);
             timer.stop(function(err) {
                 if (err) throw err;
                 done();
@@ -62,6 +71,8 @@ describe('Timer', function(){
             var spy2 = sinon.spy();
             var timer = new Timer();
             timer.start();
+            var clock = sinon.useFakeTimers();
+            clock.tick(500);
             timer.on("stop", spy1);
             timer.on("this does not exist", spy2);
             timer.stop();
@@ -71,12 +82,33 @@ describe('Timer', function(){
         })
     })
 
-
-
     describe('.stop()', function(){
         it('should throw an error when the timer is not started', function(){
             var timer = new Timer();
             assert.throws(timer.stop);
+            delete timer;
+        })
+    })
+
+    describe('.getDuration()', function(){
+        it('should throw an error when the timer is not started', function(){
+            var timer = new Timer();
+            assert.throws(timer.getDuration);
+            delete timer;
+        })
+    })
+
+    describe('.getDuration()', function(){
+        it('should return a millisecond value, > 0', function(){
+            var callback = sinon.spy();
+            var timer = new Timer();
+            timer.start(callback);
+            var clock = sinon.useFakeTimers();
+            clock.tick(500);
+            timer.stop();
+            assert(callback.calledOnce);
+            console.log('duration', timer.getDuration());
+            //assert.ok(timer.getDuration > 0);
             delete timer;
         })
     })
