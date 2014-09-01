@@ -1,7 +1,13 @@
 NERF-Wars
 =========
 
-NERF wars sessions manager: random start, ending coutdown, music, helicopters
+NERF wars sessions manager: random start, ending coutdown, napalm, music, helicopters.
+
+## Installation
+
+```bash
+npm install
+```
 
 ## Tests
 
@@ -13,6 +19,8 @@ mocha
 ```
 
 ## Code coverage
+
+using `instanbul`
 
 ```bash
 npm install -g istanbul
