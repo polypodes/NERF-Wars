@@ -2,6 +2,12 @@
  * Created by ronan on 31/08/2014.
  */
 
+var SoundPlayer = require('./lib/SoundPlayer');
+var player = new SoundPlayer();
+player.play();
+
+/*
+
 var Timer = require('./lib/Timer');
 var timer = new Timer();
 
@@ -23,9 +29,12 @@ var subscriptionIndividual = timer.subscribe('event_a', function(e){
     console.log('individual subscription found', e);
 });
 
+
 setTimeout(function () {
     timer.stop();
     console.log('timer duration:', timer.getDuration());
     console.log('CTRL+C to quit.');
 }, 5001);
+
+ */
 
